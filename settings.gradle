@@ -10,3 +10,4 @@ rootProject.name = "Android-Coding"
 include ':app'
 include ':_animation:animation-3drotate'
 include ':_sensor:shake'
+include ':game:game_guess'

@@ -4,10 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/StudioProjects/Android-Coding/_sensor/shake/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Android-Coding/game/game_guess/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.297" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Android-Coding/game/game_guess/src/main/res/drawable/btn_keyboard_selector.xml" value="0.297" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Android-Coding/game/game_guess/src/main/res/layout/activity_main.xml" value="0.29936594202898553" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Android-Coding/game/game_guess/src/main/res/layout/im_numpad.xml" value="0.29936594202898553" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Android-Coding/game/game_guess/src/main/res/menu/menu_main.xml" value="0.3380208333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

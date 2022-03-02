@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">猜数字</string>
+    <string name="action_refresh">新开游戏</string>
+    <string name="action_share">分享</string>
+    <string name="action_about">关于</string>
+    <string name="failed_overflow">尝试的次数过多，再玩一次吧</string>
+    <string name="success_info">真聪明，你猜对了哦</string>
+</resources>
