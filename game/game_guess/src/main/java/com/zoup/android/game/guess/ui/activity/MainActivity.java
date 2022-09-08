@@ -1,14 +1,10 @@
 package com.zoup.android.game.guess.ui.activity;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,12 +12,11 @@ import androidx.appcompat.widget.Toolbar;
 import com.zoup.android.game.guess.R;
 import com.zoup.android.game.guess.ui.adapter.CommonAdapter;
 import com.zoup.android.game.guess.ui.adapter.ViewHolder;
+import com.zoup.android.game.guess.ui.components.RandomTextView;
 import com.zoup.android.game.guess.utils.GuessLogic;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,14 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private List<GuessLogic.GuessResult> resultList;
     // ToolBar
     Toolbar toolbar;
-    // 4个猜数字的按钮
-    Button firstWheel;
-    Button secondWheel;
-    Button thirdWheel;
-    Button fourthWheel;
-    private Button[] wheelButtons = new Button[4];
-    private Set<Button> selectedWheels = new HashSet<>();
-    private Button selectedWheel;
+    // RandomTextView
+    RandomTextView randomTextView;
+    private int[] speeds = new int[6];
     // 10个数字键盘
     Button num0;
     Button num1;
@@ -70,14 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
-        firstWheel=findViewById(R.id.first_wheel);
-        secondWheel=findViewById(R.id.second_wheel);
-        thirdWheel=findViewById(R.id.third_wheel);
-        fourthWheel=findViewById(R.id.fourth_wheel);
-        wheelButtons[0] = firstWheel;
-        wheelButtons[1] = secondWheel;
-        wheelButtons[2] = thirdWheel;
-        wheelButtons[3] = fourthWheel;
+        randomTextView=findViewById(R.id.random_tv);
 
         num0=findViewById(R.id.button_0);
         num1=findViewById(R.id.button_1);
@@ -107,33 +90,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addListener() {
-        for (int i = 0; i < wheelButtons.length; i++) {
-            wheelButtons[i].setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (null != selectedWheel) {
-                        selectedWheel.setSelected(false);
-                    }
-                    selectedWheel = (Button) v;
-                    selectedWheel.setSelected(true);
-                    selectedWheels.add(selectedWheel);
-                }
-            });
-        }
-        for (int i = 0; i < numberButtons.length; i++) {
-            numberButtons[i].setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectedNumber = (Button) v;
-                    if (null != selectedWheel) {
-                        selectedWheel.setText(selectedNumber.getText().toString());
-                    }
-                    if (selectedWheels.size() == N) {
-                        checkGuess();
-                    }
-                }
-            });
-        }
     }
 
     private void initViews() {
@@ -150,12 +106,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void newGame() {
-        for (Button button : wheelButtons) {
-            button.setSelected(false);
-            button.setText("?");
-        }
-        MyTimeCounter timeCounter = new MyTimeCounter(2600, 83);
-        timeCounter.start();
+        randomTextView.setText("0000");
+        randomTextView.setSpeeds(RandomTextView.ALL);
+        randomTextView.start();
         guessLogic = new GuessLogic();
         resultList.clear();
         adapter.notifyDataSetChanged();
@@ -164,50 +117,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkGuess() {
-        selectedWheel.setSelected(false);
-        attemptCounts++;
-        int[] guessAttempt = new int[4];
-        for (int i = 0; i < 4; i++) {
-            guessAttempt[i] = Integer.parseInt(wheelButtons[i].getText().toString());
-        }
-        GuessLogic.GuessResult guessResult = guessLogic.guess(guessAttempt);
-        guessResult.attemptCounts = attemptCounts;
-        resultList.add(guessResult);
-        adapter.notifyDataSetChanged();
-        if (!guessResult.isWon) {
-            selectedWheels.clear();
-            for (Button button : wheelButtons) {
-                button.setText("?");
-            }
-        } else {
-            Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_SHORT).show();
-            for (Button button : wheelButtons) {
-                button.setText("?");
-            }
-        }
     }
 
-    private class MyTimeCounter extends CountDownTimer {
-        MyTimeCounter(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-            for (Button button : wheelButtons) {
-                button.setSelected(false);
-                button.setText(String.valueOf((int) (Math.random() * 10)));
-            }
-        }
-
-        @Override
-        public void onFinish() {
-            for (Button button : wheelButtons) {
-                button.setSelected(false);
-                button.setText("?");
-            }
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

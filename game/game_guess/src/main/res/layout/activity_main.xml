@@ -1,59 +1,38 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C7C1C0">
+    android:orientation="vertical">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <LinearLayout
-        android:id="@+id/top_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/toolBar"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/keyboard_bg"
-        android:padding="10dip" >
-    <LinearLayout
-        android:id="@+id/wheel_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="26dip"
-        android:layout_marginRight="26dip"
-        android:layout_gravity="center_horizontal">
 
-            <Button
-                android:id="@+id/first_wheel"
-                style="@style/wheel_button"/>
-            <Button
-                android:id="@+id/second_wheel"
-                style="@style/wheel_button" />
-            <Button
-                android:id="@+id/third_wheel"
-                style="@style/wheel_button" />
-            <Button
-                android:id="@+id/fourth_wheel"
-                style="@style/wheel_button" />
-        </LinearLayout>
-    <include
-        android:id="@+id/numpad_layout"
-        android:layout_width="match_parent"
+    <com.zoup.android.game.guess.ui.components.RandomTextView
+        android:id="@+id/random_tv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dip"
-        android:layout_marginLeft="43dip"
-        android:layout_marginRight="43dip"
-        layout="@layout/im_numpad" />
-    </LinearLayout>
+        android:padding="14px"
+        android:text="0000"
+        android:textSize="56sp" />
+
     <ListView
         android:id="@+id/result_listview"
         android:layout_width="match_parent"
-        android:layout_height="300dip"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
         android:background="#e4e8f8"
-        android:layout_below="@+id/top_group"
-        android:layout_marginTop="10dip"
         android:scrollbars="none" />
-</RelativeLayout>
+
+    <include
+        android:id="@+id/numpad_layout"
+        layout="@layout/im_numpad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp" />
+
+</LinearLayout>
