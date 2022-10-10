@@ -1,4 +1,4 @@
-package com.zoup.android.androidviewanimaiton
+package com.zoup.android.kotlin.coroutines
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.zoup.android.androidviewanimaiton", appContext.packageName)
+        assertEquals("com.zoup.android.kotlin.coroutines.test", appContext.packageName)
     }
 }

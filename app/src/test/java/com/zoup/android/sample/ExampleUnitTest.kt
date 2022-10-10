@@ -1,4 +1,4 @@
-package com.zoup.android.androidviewanimaiton
+package com.zoup.android.sample
 
 import org.junit.Test
 
